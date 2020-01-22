@@ -27,11 +27,8 @@ pipeline {
 
       stage('Build and Push Image') {
          steps {
-          // sh 'docker build -t ${REPOSITORY_TAG} .'
-            script {
-        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          sh 'docker build -t ${REPOSITORY_TAG} .'
       }
-         }
       }
 
       //stage('Deploy to Cluster') {
