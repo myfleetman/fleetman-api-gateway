@@ -26,12 +26,21 @@ pipeline {
          }
       }
 
-      stage('Build and Push Image') {
-         steps {
+      //stage('Build and Push Image') {
+        // steps {
          // dockerImage = sh 'docker build -t ${REPOSITORY_TAG} .'
-            dockerImage = docker.build registry + ":${REPOSITORY_TAG}"
+          //  dockerImage = docker.build registry + ":${REPOSITORY_TAG}"
+     // }
+      //}
+      stages {
+    stage('Building image') {
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
       }
-      }
+    }
+  }
     stage('Deploy Image') {
       steps{
         script {
