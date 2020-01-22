@@ -29,7 +29,7 @@ pipeline {
          steps {
           // sh 'docker build -t ${REPOSITORY_TAG} .'
             script {
-        docker.build registry + ":${REPOSITORY_TAG}"
+        dockerImage = docker.build registry + ":$BUILD_NUMBER"
       }
          }
       }
