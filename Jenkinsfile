@@ -28,7 +28,8 @@ pipeline {
 
       stage('Build and Push Image') {
          steps {
-          dockerImage = sh 'docker build -t ${REPOSITORY_TAG} .'
+         // dockerImage = sh 'docker build -t ${REPOSITORY_TAG} .'
+            dockerImage = docker.build registry + ":${REPOSITORY_TAG}"
       }
       }
     stage('Deploy Image') {
