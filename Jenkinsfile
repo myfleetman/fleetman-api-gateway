@@ -32,7 +32,6 @@ pipeline {
           //  dockerImage = docker.build registry + ":${REPOSITORY_TAG}"
      // }
       //}
-      stages {
     stage('Building image') {
       steps{
         script {
@@ -40,7 +39,6 @@ pipeline {
         }
       }
     }
-  }
     stage('Deploy Image') {
       steps{
         script {
