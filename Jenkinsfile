@@ -7,8 +7,8 @@ pipeline {
      YOUR_DOCKERHUB_USERNAME = "gopac"
 
      SERVICE_NAME = "fleetman-api-gateway"
-     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
-     registry = "gopac/gopac"
+     registry="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
+     //registry = "gopac/gopac"
      registryCredential = 'dockerhub'
      dockerImage = ''
    }
