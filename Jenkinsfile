@@ -33,6 +33,6 @@ pipeline {
         //  steps {
           //          sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           //}
-      //}
+      //}}
    }
 }
