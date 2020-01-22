@@ -8,8 +8,9 @@ pipeline {
 
      SERVICE_NAME = "fleetman-api-gateway"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
-    registry = "gopac/gopac"
-    registryCredential = 'dockerhub'
+     registry = "gopac/gopac"
+     registryCredential = 'dockerhub'
+     dockerImage = ''
    }
 
    stages {
@@ -27,10 +28,18 @@ pipeline {
 
       stage('Build and Push Image') {
          steps {
-          sh 'docker build -t ${REPOSITORY_TAG} .'
+          dockerImage = sh 'docker build -t ${REPOSITORY_TAG} .'
       }
       }
-
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
       //stage('Deploy to Cluster') {
         //  steps {
           //          sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
